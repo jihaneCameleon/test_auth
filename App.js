@@ -19,3 +19,5 @@ const styles = StyleSheet.create({
 });
 
 // https://njwest.medium.com/building-a-react-native-jwt-client-api-requests-and-asyncstorage-d1a20ab60cf4
+
+// https://www.youtube.com/watch?v=gZRklbykGGk
