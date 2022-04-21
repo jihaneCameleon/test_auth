@@ -10,6 +10,7 @@ export default function App() {
      <Register/>
     </View>
   );
+  
 }
 const styles = StyleSheet.create({
   screen:{

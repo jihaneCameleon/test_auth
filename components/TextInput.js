@@ -16,17 +16,15 @@ const Input = props => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    width: "90%",
-    height:50,
+    width: "100%",
     borderColor: "lightblue",
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
-    paddingVertical: 10,
     marginVertical: 10,
   },
   input: {
-    fontSize: 18,
+    fontSize: 15,
     color:'black',
   },
 });
