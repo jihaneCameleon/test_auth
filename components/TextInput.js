@@ -3,11 +3,12 @@ import React from 'react'
 
 const Input = props => {
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container,...props.style}}>
       <TextInput style={styles.input}
         placeholder={props.placeholder}
         keyboardType={props.type}
         autoComplete={props.autoComplete}
+        value={props.value}
       />
     </View>
   );
@@ -17,9 +18,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     width: "100%",
-    borderColor: "lightblue",
-    borderWidth: 1,
-    borderRadius: 5,
     paddingHorizontal: 10,
     marginVertical: 10,
   },
