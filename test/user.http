@@ -1,0 +1,13 @@
+post http://localhost/api/register1.php
+Content-Type: application/json
+
+{
+    "civilite":"Mlle",
+    "nom":"arfi",
+    "prenom":"jihane",
+    "email":"jihane@gmail.com",
+    "password":"jihan123",
+    "photo":"image.png",
+    "ville":"mohamedia",
+    "adresse":"derb chabab"
+}

@@ -80,21 +80,21 @@ const Register = () => {
     // });
 
 
-    const url="http://192.168.137.1:80/api/register.php";
-    const headers={
-      'Accept':'application/json',
-      'Content-Type':'application.json'
-    }
+    const url = 'http://10.0.2.2:80/api/register1.php';
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
 
     const data={
-      civilite: 'mr',
-        nom:'jIHANE',
-        prenom:'arfi',
-        email:'dnfnfnfnfnf',
-        password: 'password',
-        photo:'photo',
-        ville:'ville',
-        adresse:'adresse'
+    "civilite":civilite,
+    "nom":nom,
+    "prenom":prenom,
+    "email":email,
+    "password":password,
+    "photo":photo,
+    "ville":ville,
+    "adresse":adresse
     }
     fetch(url,
       {
@@ -105,8 +105,9 @@ const Register = () => {
       )
       .then((response)=>response.json())
       .then((response)=>{
+        alert(response);
         alert(response[0].message);
-        alert(response)
+        
       })
       .catch((err)=>{
         alert("error"+err);
@@ -127,14 +128,14 @@ const Register = () => {
         </View>
         <View style={styles.inputContainer}>
         <Text >{message.text}</Text>
-          <Input placeholder="Civilite" type="default" autoComplete="name" style={styles.input} value="Mr" onChangeText={value=>setCivilite(value)} />
-          <Input placeholder="Nom" type="default" autoComplete="name" style={styles.input} value="jjjjj" onChangeText={value=>setNom(value)} />
-          <Input placeholder="Prenom" type="default" autoComplete="name" style={styles.input} value="nnnn" onChangeText={value=>setPrenom(value)} />
-          <Input placeholder="Email" type="default" autoComplete="email" style={styles.input} value="jknbkjbkj" onChangeText={value=>setEmail(value)} />
-          <Input placeholder="Password" type="default" autoComplete="password" style={styles.input} value="hjgjhbhjb" onChangeText={value=>setPassword(value)} />
-          <Input placeholder="Photo" type="default" autoComplete="name" style={styles.input} value="hjgjhbhjb" onChangeText={value=>setPhoto(value)} />
-          <Input placeholder="Ville" type="default" autoComplete="name" style={styles.input} value="hjgjhbhjb" onChangeText={value=>setVille(value)} />
-          <Input placeholder="Adresse" type="default" autoComplete="street-address" style={styles.input} value="hjgjhbhjb" onChangeText={value=>setAdresse(value)} />
+          <Input placeholder="Civilite" type="default" autoComplete="name" style={styles.input} value={civilite} onChangeText={value=>setCivilite(value)} />
+          <Input placeholder="Nom" type="default" autoComplete="name" style={styles.input} value={nom} onChangeText={value=>setNom(value)} />
+          <Input placeholder="Prenom" type="default" autoComplete="name" style={styles.input} value={prenom} onChangeText={value=>setPrenom(value)} />
+          <Input placeholder="Email" type="default" autoComplete="email" style={styles.input} value={email} onChangeText={value=>setEmail(value)} />
+          <Input placeholder="Password" type="default" autoComplete="password" style={styles.input} value={password} onChangeText={value=>setPassword(value)} />
+          <Input placeholder="Photo" type="default" autoComplete="name" style={styles.input} value={photo} onChangeText={value=>setPhoto(value)} />
+          <Input placeholder="Ville" type="default" autoComplete="name" style={styles.input} value={ville} onChangeText={value=>setVille(value)} />
+          <Input placeholder="Adresse" type="default" autoComplete="street-address" style={styles.input} value={adresse} onChangeText={value=>setAdresse(value)} />
           <FormButton title="Register" onPress={inputHandler} />
         </View>
       </ScrollView>
