@@ -17,22 +17,27 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      
+
+      <Stack.Screen
+          options={{headerShown: false}}
+          name="Register"
+          component={Register}
+        />
+
         <Stack.Screen
           options={{headerShown: false}}
           name="Profile"
           component={Profile}
         />
+
         <Stack.Screen
           options={{headerShown: false}}
           name="Login"
           component={Login}
         />
+        
 
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Register"
-          component={Register}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

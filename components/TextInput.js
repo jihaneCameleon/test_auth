@@ -9,6 +9,7 @@ const Input = props => {
         keyboardType={props.type}
         autoComplete={props.autoComplete}
         value={props.value}
+        onChangeText={props.onChangeText}
       />
     </View>
   );

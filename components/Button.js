@@ -4,7 +4,7 @@ import React from "react";
 const FormButton = props => {
   return (
     <View style={styles.container}>
-      <Button style={styles.btn}  title={props.title} />
+      <Button style={styles.btn} onPress={props.onPress}  title={props.title} />
     </View>
   );
 };

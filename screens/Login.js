@@ -1,9 +1,34 @@
 import {View, Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native';
-import React from 'react';
+import React,{useState} from 'react';
 import Input from '../components/TextInput';
 import FormButton from '../components/Button';
 
 const Register = () => {
+
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+
+  const [message,setMessage]=useState({
+    text:'',
+    color:''
+  });
+
+  const inputHandler= () =>{
+
+  if(!email.trim()){
+    setMessage({text:'Please set a valid email',color:'red'});
+  }
+
+  else if(!password.trim()){
+    setMessage({text:'Please set a valid password',color:'red'});
+  }
+
+  else{
+    setMessage({text:"you are successfully registered",color:'green'})
+  }
+
+  }
+
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView>
@@ -12,9 +37,11 @@ const Register = () => {
           <Text style={styles.text}>Enter your details to login</Text>
         </View>
         <View style={styles.inputContainer}>
-          <Input placeholder="Email" type="default" autoComplete="email" />
-          <Input placeholder="Password" type="default" autoComplete="password" />
-          <FormButton title="Login" />
+        <Text style={{color:message.color}}>{message.text}</Text>
+          <Input placeholder="Email" type="default" autoComplete="email" style={styles.input} value={email} onChangeText={value=>setEmail(value)} />
+          <Input placeholder="Password" type="default" autoComplete="password" style={styles.input} value={password} onChangeText={value=>setPassword(value)} />
+          <FormButton title="Login" onPress={inputHandler} />
+
         </View>
       </ScrollView>
     </SafeAreaView>
