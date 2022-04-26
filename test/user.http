@@ -1,4 +1,6 @@
-post http://localhost/api/register1.php
+
+
+post http://localhost/api/register.php
 Content-Type: application/json
 
 {
@@ -10,4 +12,31 @@ Content-Type: application/json
     "photo":"image.png",
     "ville":"mohamedia",
     "adresse":"derb chabab"
+}
+
+###
+
+post http://localhost/api/update.php
+Content-Type: application/json
+
+{
+    "id":29,
+    "civilite":"chh",
+    "nom":"arfi",
+    "prenom":"jihane",
+    "email":"jihane@gmail.com",
+    "password":"jihan123",
+    "photo":"image.png",
+    "ville":"mohamedia",
+    "adresse":"derb chabab"
+}
+
+###
+
+post http://localhost/api/login.php
+Content-Type: application/json
+
+{
+    "email":"jihane@gmail.com",
+    "password":"jihan123"
 }

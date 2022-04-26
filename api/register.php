@@ -1,53 +1,47 @@
 <?php
 
-    $conn=mysqli_connect("localhost", "root","","user_db");
+    $conn=mysqli_connect("localhost","root","");
+    $db=mysqli_select_db($conn,"user_db");
 
-    $civilite=$nom=$prenom=$email=$password=$photo=$ville=$adresse="";
+    $EncodedData=file_get_contents('php://input');
+    $DecodedData=json_decode($EncodedData,TRUE);
+
+    $civilite=$nom=$prenom=$email=$password=$photo=$ville=$adresse=$message=$success="";
+
+    $civilite=$DecodedData['civilite'];
+    $nom=$DecodedData['nom'];
+    $prenom=$DecodedData['prenom'];
+    $email=$DecodedData['email'];
+    $password=$DecodedData['password'];
+    $photo=$DecodedData['photo'];
+    $ville=$DecodedData['ville'];
+    $adresse=$DecodedData['adresse'];
 
 
-    if(isset($_POST['civilite']
-    ,$_POST['nom']
-    ,$_POST['prenom']
-    ,$_POST['email']
-    ,$_POST['password']
-    ,$_POST['photo']
-    ,$_POST['ville']
-    ,$_POST['adresse'])){
+    // $civilite=$_POST['civilite'];
+    // $nom=$_POST['nom'];
+    // $prenom=$_POST['prenom'];
+    // $email=$_POST['email'];
+    // $password=$_POST['password'];
+    // $photo=$_POST['photo'];
+    // $ville=$_POST['ville'];
+    // $adresse=$_POST['adresse'];
+     
 
-   $civilite=$_POST['civilite'];
-    $nom=$_POST['nom'];
-    $prenom=$_POST['prenom'];
-    $email=$_POST['email'];
-    $password=$_POST['password'];
-    $photo=$_POST['photo'];
-    $ville=$_POST['ville'];
-    $adresse=$_POST['adresse'];
+    $query="insert into 
+    user(civilite,nom,prenom,email,password,photo,ville,adresse) 
+    values ('$civilite','$nom','$prenom','$email','$password','$photo','$ville','$adresse')";
 
-     $query="insert into user(civilite,nom,prenom,email,password,photo,ville,adresse) values('$civilite','$nom','$prenom','$email','$password','$photo','$ville','$adresse')";
-
+    
     $result=mysqli_query($conn,$query);
 
+
     if($result){
-        $message="user is registered";
+        $success="User has been registered successfully";
     }
     else{
-        $message="error";
+        $message="server Error";
     }
+    $response[]=array("message" => $message,"success"=>$success);
 
-    }
-    else{
-         $message="post not set";
-    }
-
-    //  $civilite='civilite';
-    // $nom='nom';
-    // $prenom='prenom';
-    // $email='email';
-    // $password='password';
-    // $photo='photo';
-    // $ville='ville';
-    // $adresse='adresse';
-
-   
-
-    echo json_encode($message);
+    echo json_encode($response);
