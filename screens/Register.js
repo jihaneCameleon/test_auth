@@ -3,9 +3,13 @@ import React,{useState} from 'react';
 import Input from '../components/TextInput';
 import FormButton from '../components/Button';
 import deviceStorage from '../services/deviceStorage';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import axios from 'axios';
 
 const Register = () => {
+
+  const navigation = useNavigation();
+
 
   const [civilite,setCivilite]=useState('');
   const [nom,setNom]=useState('');
@@ -16,48 +20,41 @@ const Register = () => {
   const [ville,setVille]=useState('');
   const [adresse,setAdresse]=useState('');
 
-  const [message,setMessage]=useState({
-    text:'',
-    color:''
-  });
+  const [error,setError]=useState('');
 
-  const [error,setError]=useState({
-    error:'',
-    loading:true
-  })
 
   const inputHandler= () =>{
-  //   if(!civilite.trim()){
-  //   setMessage({text:'Please set a valid civilite' ,color:'red'});
-  // }
+    if(!civilite.trim()){
+    setError('Please set a valid civilite');
+  }
   
-  // else if(!nom.trim()){
-  //   setMessage({text:'Please set a valid nom' ,color:'red'});
-  // }
+  else if(!nom.trim()){
+    setError('Please set a valid nom');
+  }
 
-  // else if(!prenom.trim()){
-  //   setMessage({text:'Please set a valid prenom' ,color:'red'});
-  // }
+  else if(!prenom.trim()){
+    setError('Please set a valid prenom');
+  }
 
-  // else if(!email.trim()){
-  //   setMessage({text:'Please set a valid email',color:'red'});
-  // }
+  else if(!email.trim()){
+    setError('Please set a valid email');
+  }
 
-  // else if(!password.trim()){
-  //   setMessage({text:'Please set a valid password',color:'red'});
-  // }
+  else if(!password.trim()){
+    setError('Please set a valid password');
+  }
 
-  // else if(!photo.trim()){
-  //   setMessage({text:'Please set a valid photo',color:'red'});
-  // }
+  else if(!photo.trim()){
+    setError('Please set a valid photo');
+  }
 
-  // else if(!ville.trim()){
-  //   setMessage({text:'Please set a valid ville',color:'red'});
-  // }
+  else if(!ville.trim()){
+    setError('Please set a valid ville');
+  }
 
-  // else if(!adresse.trim()){
-  //   setMessage({text:'Please set a valid adresse',color:'red'});
-  // }
+  else if(!adresse.trim()){
+    setError('Please set a valid adresse');
+  }
 
   // else{
     // axios.post("localhost/api/register.php",{
@@ -79,8 +76,8 @@ const Register = () => {
     //    // Handle returned errors here
     // });
 
-
-    const url = 'http://10.0.2.2:80/api/register1.php';
+else{
+    const url = 'http://10.0.2.2:80/api/register.php';
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -107,17 +104,28 @@ const Register = () => {
       )
       .then((response)=>response.json())
       .then((response)=>{
-        alert(response);
-        alert(response[0].message);
+
+       console.log(response);
+       console.log(response[0].message);
+       setError(response[0].message);
+       if (response[0].success!=null){
         
+        navigation.replace('Login', {
+          registerMessage: response[0].success,
+        });
+
+       }
       })
       .catch((err)=>{
         alert("error"+err);
       })
+
+      
+    }
   
+    }
 
 
-}
 
 
 
@@ -129,21 +137,79 @@ const Register = () => {
           <Text style={styles.text}>Enter your details to register</Text>
         </View>
         <View style={styles.inputContainer}>
-        <Text >{message.text}</Text>
-          <Input placeholder="Civilite" type="default" autoComplete="name" style={styles.input} value={civilite} onChangeText={value=>setCivilite(value)} />
-          <Input placeholder="Nom" type="default" autoComplete="name" style={styles.input} value={nom} onChangeText={value=>setNom(value)} />
-          <Input placeholder="Prenom" type="default" autoComplete="name" style={styles.input} value={prenom} onChangeText={value=>setPrenom(value)} />
-          <Input placeholder="Email" type="default" autoComplete="email" style={styles.input} value={email} onChangeText={value=>setEmail(value)} />
-          <Input placeholder="Password" type="default" autoComplete="password" style={styles.input} value={password} onChangeText={value=>setPassword(value)} />
-          <Input placeholder="Photo" type="default" autoComplete="name" style={styles.input} value={photo} onChangeText={value=>setPhoto(value)} />
-          <Input placeholder="Ville" type="default" autoComplete="name" style={styles.input} value={ville} onChangeText={value=>setVille(value)} />
-          <Input placeholder="Adresse" type="default" autoComplete="street-address" style={styles.input} value={adresse} onChangeText={value=>setAdresse(value)} />
+          <Text style={{color: 'red'}}>{error}</Text>
+          <Input
+            placeholder="Civilite"
+            type="default"
+            autoComplete="name"
+            style={styles.input}
+            value={civilite}
+            onChangeText={value => setCivilite(value)}
+          />
+          <Input
+            placeholder="Nom"
+            type="default"
+            autoComplete="name"
+            style={styles.input}
+            value={nom}
+            onChangeText={value => setNom(value)}
+          />
+          <Input
+            placeholder="Prenom"
+            type="default"
+            autoComplete="name"
+            style={styles.input}
+            value={prenom}
+            onChangeText={value => setPrenom(value)}
+          />
+          <Input
+            placeholder="Email"
+            type="default"
+            autoComplete="email"
+            style={styles.input}
+            value={email}
+            onChangeText={value => setEmail(value)}
+          />
+          <Input
+            placeholder="Password"
+            type="default"
+            autoComplete="password"
+            style={styles.input}
+            value={password}
+            onChangeText={value => setPassword(value)}
+            secureTextEntry={true}
+          />
+          <Input
+            placeholder="Photo"
+            type="default"
+            autoComplete="name"
+            style={styles.input}
+            value={photo}
+            onChangeText={value => setPhoto(value)}
+          />
+          <Input
+            placeholder="Ville"
+            type="default"
+            autoComplete="name"
+            style={styles.input}
+            value={ville}
+            onChangeText={value => setVille(value)}
+          />
+          <Input
+            placeholder="Adresse"
+            type="default"
+            autoComplete="street-address"
+            style={styles.input}
+            value={adresse}
+            onChangeText={value => setAdresse(value)}
+          />
           <FormButton title="Register" onPress={inputHandler} />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
+
 
 const styles = StyleSheet.create({
   screen: {

@@ -5,9 +5,8 @@
 
     $EncodedData=file_get_contents('php://input');
     $DecodedData=json_decode($EncodedData,TRUE);
-    print_r($EncodedData,$DecodedData);
 
-    $civilite=$nom=$prenom=$email=$password=$photo=$ville=$adresse="";
+    $id=$civilite=$nom=$prenom=$email=$password=$photo=$ville=$adresse=$message=$success="";
 
     $civilite=$DecodedData['civilite'];
     $nom=$DecodedData['nom'];
@@ -29,20 +28,18 @@
     // $adresse=$_POST['adresse'];
      
 
-    $query="insert into 
-    user(civilite,nom,prenom,email,password,photo,ville,adresse) 
-    values ('$civilite','$nom','$prenom','$email','$password','$photo','$ville','$adresse')";
+    $query="update user set civilite='$civilite',nom='$nom',prenom='$prenom',email='$email',password='$password',photo='$photo',ville='$ville',adresse='$adresse' where id=$id)";
 
     
     $result=mysqli_query($conn,$query);
 
 
-    if($result){
-        $message="User has been registered successfully";
+    if(isset($result)){
+        $success="User has been updated successfully";
     }
     else{
         $message="server Error";
     }
-    $response[]=array("message" => $message);
+    $response[]=array("message" => $message,"success"=>$success);
 
     echo json_encode($response);

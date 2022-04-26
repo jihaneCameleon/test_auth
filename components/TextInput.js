@@ -10,6 +10,7 @@ const Input = props => {
         autoComplete={props.autoComplete}
         value={props.value}
         onChangeText={props.onChangeText}
+        secureTextEntry={props.secureTextEntry}
       />
     </View>
   );
