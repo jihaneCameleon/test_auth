@@ -4,7 +4,7 @@ post http://localhost/api/register.php
 Content-Type: application/json
 
 {
-    "civilite":"Mlle",
+    "civilite":"mam",
     "nom":"arfi",
     "prenom":"jihane",
     "email":"jihane@gmail.com",
@@ -20,15 +20,15 @@ post http://localhost/api/update.php
 Content-Type: application/json
 
 {
-    "id":29,
-    "civilite":"chh",
+    "id":41,
+    "civilite":"Melle",
     "nom":"arfi",
     "prenom":"jihane",
     "email":"jihane@gmail.com",
     "password":"jihan123",
     "photo":"image.png",
     "ville":"mohamedia",
-    "adresse":"derb chabab"
+    "adresse":"el alia"
 }
 
 ###

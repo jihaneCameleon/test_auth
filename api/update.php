@@ -8,6 +8,7 @@
 
     $id=$civilite=$nom=$prenom=$email=$password=$photo=$ville=$adresse=$message=$success="";
 
+    $id=$DecodedData['id'];
     $civilite=$DecodedData['civilite'];
     $nom=$DecodedData['nom'];
     $prenom=$DecodedData['prenom'];
@@ -28,18 +29,18 @@
     // $adresse=$_POST['adresse'];
      
 
-    $query="update user set civilite='$civilite',nom='$nom',prenom='$prenom',email='$email',password='$password',photo='$photo',ville='$ville',adresse='$adresse' where id=$id)";
+    $query="update user set civilite='$civilite',nom='$nom',prenom='$prenom',email='$email',password='$password',photo='$photo',ville='$ville',adresse='$adresse' where id=$id";
 
     
     $result=mysqli_query($conn,$query);
 
 
-    if(isset($result)){
+    if($result){
         $success="User has been updated successfully";
     }
     else{
         $message="server Error";
     }
-    $response[]=array("message" => $message,"success"=>$success);
+    $response[]=array("message" => $message,"success"=>$success,"result"=>$result,"query"=>$query);
 
     echo json_encode($response);

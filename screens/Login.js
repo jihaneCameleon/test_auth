@@ -17,7 +17,7 @@ const Register = () => {
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
 
-  const [error,setError]=useState();
+  const [error,setError]=useState('');
 
   const inputHandler= () =>{
 
@@ -56,7 +56,7 @@ const Register = () => {
 
          setError(response[0].message);
          if (response[0].success != null) {
-            navigation.navigate('Profile', {data: response[0].data});
+            navigation.replace('Profile', {data: response[0].data});
          }
         
       })
@@ -86,7 +86,7 @@ const Register = () => {
             type="default"
             autoComplete="email"
             style={styles.input}
-            value="jihane@gmail.com"
+            value={email}
             onChangeText={value => setEmail(value)}
           />
           <Input
@@ -94,7 +94,7 @@ const Register = () => {
             type="default"
             autoComplete="password"
             style={styles.input}
-            value="jihan123"
+            value={password}
             onChangeText={value => setPassword(value)}
             secureTextEntry={true}
           />

@@ -69,15 +69,15 @@ const Profile = () => {
     };
 
     const data = {
-      id: 29,
-      civilite: 'chh',
-      nom: 'arfi',
-      prenom: 'jihane',
-      email: 'jihane@gmail.com',
-      password: 'jihan123',
-      photo: 'image.png',
-      ville: 'mohamedia',
-      adresse: 'derb chabab',
+      id: id,
+      civilite: civilite,
+      nom: nom,
+      prenom: prenom,
+      email: email,
+      password:password,
+      photo: photo,
+      ville: ville,
+      adresse: adresse,
     };
     fetch(url, {
       method: 'POST',
@@ -93,9 +93,7 @@ const Profile = () => {
       .catch(err => {
         alert('error' + err);
       });
-    setError(
-      'User has been updated successfully',
-    );
+   
   }
 
   }
@@ -111,11 +109,14 @@ const Profile = () => {
             <Image style={styles.img} source={require('../assets/icon.png')} />
           </View>
           <Text style={styles.text}>{data.nom + ' ' + data.prenom}</Text>
-          <Button style={styles.btn} title="Logout" />
+          <Button style={styles.btn} title="Logout" onPress={navigation.replace('Login')}  />
         </View>
+
         <View style={styles.cardBody}>
+
           <View style={styles.inputContainer}>
-            <Text style={{color: 'red'}}>{error}</Text>
+          <Text style={{color: 'red'}}>{error}</Text>
+            
             <Input
               placeholder="Civilite"
               type="default"
