@@ -82,8 +82,10 @@ const Register = () => {
 
     const url = 'http://10.0.2.2:80/api/register1.php';
     const headers = {
-      'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      
+      
     };
 
     const data={
